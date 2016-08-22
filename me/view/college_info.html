@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>修改</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+               <form action="college.php?act=edit&id=<?php echo $info['college_id'];?>" method="post" >
+                学院编号：<input type="text" name="college_id" value="<?php echo $info['college_id'];?>">
+                <br/><br/>
+                学院名称：<input type="text" name="college_name" value="<?php echo $info['college_name'];?>">
+                <br/><br/>
+               <input  type="submit" value="提交" />
+            </form>
+
+            </form>
+
+        </div>
+    </body>
+</html>
+

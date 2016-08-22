@@ -1,0 +1,332 @@
+<?php
+    session_start();
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>教学计划表查找</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    div {
+        font-size: 13px;
+    }
+
+    .right {
+        display: inline-block;
+        font-size: 14px;
+    }
+
+    #menubg {
+        background: #408080;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    #menu {
+        margin: 0 auto;
+        width: 1000px;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    ul li {
+        list-style: none;
+        float: left;
+    }
+
+    #menu ul li a {
+        display: block;
+        margin: 0 20px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    #menu ul li a:hover {
+        /*background-color: orange;*/
+        color: #0eeff1;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .container {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 12px;
+        color: #1f3f3f;
+        background-color: #d1d1d1;
+        height: 25px;
+        line-height: 25px;
+        padding-left: 5px;
+        border: 1px solid #E0E0E0;
+        margin-top: 5px;
+    }
+
+    table {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    td,
+    th {
+        height: 20px;
+        padding: 2px 2px 2px 5px;
+        font-size: 10pt;
+        word-break: break-all;
+        text-align: center;
+    }
+
+    td {
+        border: 1px solid #E0E0E0;
+        empty-cells: show;
+    }
+
+    th,
+    thead th {
+        border-bottom: 1px solid #000000;
+    }
+
+    tfoot th {
+        border-top: 1px solid #000000;
+    }
+
+    .schedule ul li {
+        float: left;
+        width: 180px;
+        margin-left: 20px;
+    }
+
+    .schedule {
+        height: 80px;
+        border: 1px solid #E0E0E0;
+        line-height: 1.5;
+        margin: 0 auto;
+    }
+
+    .page ul {
+        display: inline;
+    }
+
+    .page ul li {
+        border: solid 1px orchid;
+        float: left;
+        list-style: none;
+        padding: 5px 10px;
+        margin: 10px 5px;
+    }
+    /*a {
+        text-decoration: none;
+    }*/
+
+    span {
+        display: initial;
+        line-height: 3;
+    }
+    /*td {
+        border: solid 1px black;
+    }*/
+
+   /* span ul li {
+        float: left;
+    }*/
+
+    .page {
+        /*float: right;*/
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .iframe1 {
+        /*clear: both;*/
+        float: left;
+        /*position: absolute;*/
+    }
+    .banner{
+        margin:10px 8px;
+    }
+
+    </style>
+</head>
+<!--            <style>
+        ul{
+            display: inline;
+        }
+        ul li{
+            border:solid 1px orchid;
+            float:left;
+            list-style: none;
+            padding:5px 10px;
+            margin:10px 5px;
+        }
+        a{
+            text-decoration: none;
+        }
+        span{
+            display: initial;
+            line-height: 3;
+        }
+        td{
+            border:solid 1px black;
+        }
+
+  
+    </style>-->
+        <script>
+            
+            function submit_click(){
+                document.getElementById("cxform").action="student1.php";
+                document.getElementById("cxform").submit();
+             
+            }
+//            function submit_click1(){
+////                   $.post("student.php?act=puanduan",{'zy':$("#zy").val()},function(data){
+////                       var html="";
+////                       if(data.msg==1){
+////                           
+////                           $.each(data.data,function (k,v){
+////                            html+="<option value=v.zy_id>v.zy_name</option>";    
+////                           });
+////                       }
+////                       $("#zy").html(html);
+////                    
+////                    
+////                })
+//                document.getElementById("cxform").action="student1.php?act=puanduan1";
+//                document.getElementById("cxform").submit();
+//            }
+            function submit_click2(){
+                document.getElementById("cxform").action="student1.php?act=search1";
+                document.getElementById("cxform").submit();
+            }
+
+        </script>
+    </head>
+    <body>
+        <div style="height:30px;line-height:30px;width:100%;background-color:#f7f7f7;border-bottom:1px solid #e4e4e4;">
+        <span style="margin-left:10px;color:#408080;">欢迎使用郑州师范学院课表查询系统</span>
+        <span style="float:right;margin-right:10px;">
+            <?php
+
+                if(!isset($_SESSION['username'])){
+                    echo "<script>alert('请先登录');location.href='lo.php';</script>";
+                } else {
+                    echo '在线人员：'.$_SESSION['username'];
+                }
+            ?>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="lo.php"><font color="#000">退出</font></a></span>
+        </span>
+    </div>
+    <div>
+        <img src="view/images/head.png">
+    </div>
+    <div id="menubg">
+        <div id="menu">
+            <ul>
+                <li><a href="student.php">课表信息查询</a></li>
+                <li><a href="jiaoshi.php">教师表信息查询</a></li>
+                <li><a href="student1.php"><font color="#0eeff1">教学计划表信息查询</font></a></li>
+                <li><a href="index.php">返回首页</a></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="container" style="border:1px solid #E0E0E0;">
+        <div class="title">教学计划表信息查询</div>
+        <form action = "student1.php" method="post" id = "cxform">
+                  <div class = "banner">
+                学院：
+                    <select name = "xueyuan" onchange = "submit_click()">
+                        <option value="">---请选择学院---</option>
+                        <?php foreach($xuelist as $k=>$v):?>
+                        <option value="<?php echo $v['college_id'];?>" <?php if($v['college_id']==$college_id) {echo "selected";}?>>--<?php echo $v['college_name'];?>--</option>
+                        <?php endforeach;?>
+                    </select>     
+                专业：
+                    <select name = "zy">
+                        <option value="">---请选择专业---</option>
+                        <?php foreach($zylist as $k=>$v):?>
+                        <option value="<?php echo $v['profess_id'];?>" <?php if($v['profess_id']==$profess_id) {echo "selected";}?>>--<?php echo $v['profess_name'];?>--</option>
+                        <?php endforeach;?>
+                    </select> 
+         
+                    <input type = "button" value = "搜索" onclick = "submit_click2()">
+                </div>
+
+        <div>
+            <div class="title">教学计划表信息</div>
+            <table cellspacing="0" cellpadding="0">
+                
+                <tr>
+                    <th>教学计划编号</th>
+                    <th>课程编号</th>
+                    <th>课程名称</th>
+                    <th>课程性质</th>
+                    <th>考试形式</th>
+                    <th>周学时</th>
+                    <th>学分</th>
+                    <th>计划学期</th>
+                    <th>专业名称</th>
+                    <th>计划周数</th>
+<!--                    <th>操作</th>-->
+
+                </tr>
+                <?php if(isset($kccxlist)):?>
+                <?php foreach($kccxlist as $k=>$v):?>
+                <tr>
+                    <td><?php echo $v['plan_id'];?></td>
+                    <td><?php echo $v['course_id'];?></td>
+                    <td><?php echo $v['course_name'];?></td>
+                    <td><?php echo $v['course_xingz'];?></td>
+                    <td><?php echo $v['course_testxs'];?></td>
+                    <td><?php echo $v['course_zxs'];?></td> 
+                    <td><?php echo $v['course_xuef'];?></td>
+                    <td><?php echo $v['plan_xq'];?></td>
+                    <td><?php echo $v['profess_name'];?></td>
+                    <td><?php echo $v['plan_week'];?></td>                 
+<!--                    <td>
+                        <a href = "student1.php?act=edit&id=<?php echo $v['classroom_id'];?>">编辑</a>
+                        <a href = "student1.php?act=del&id=<?php echo $v['classroom_id'];?>">删除</a>
+                        <a href = "view/add_info.html">添加</a>
+                    </td>-->
+                </tr>
+                <?php endforeach; endif;?>
+            </table>
+<!--             <div class="page">
+            <span>一共<?php echo $pagecount;?>个数据</span>
+            <ul>
+                <?php $i = 1;while($i<=$count){
+                        if($page==$i)
+                        {
+                        echo "<li style='background:orange;color:white;'><a style='color:#fff;' href = 'student1.php?p={$i}'>$i</a></li>";
+                        }
+
+                        else{
+                        echo "<li><a href='student1.php?p={$i}'>$i</a></li>";
+                        }
+                        $i++;
+                    }
+                ?>
+            </ul>
+        </div>-->
+    </div>  
+    </div>
+  </form>
+</div>
+          <div align="center" class="container" style="font-size:10pt;border-bottom:2px solid #408080;height:30px;line-height:30px;margin-top:20px;margin-bottom:2px;">
+    郑州师范学院众创工作室版权所有 2012，浏览器版本：支持火狐、谷歌、IE（8.0及以上） 
+    </body>

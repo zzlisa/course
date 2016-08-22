@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>修改</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+               <form action="teacher.php?act=edit&id=<?php echo $info['teacher_id'];?>" method="post" >
+                教师编号：<input type="text" name="teacher_id" value="<?php echo $info['teacher_id'];?>">
+                <br/><br/>
+                教师姓名：<input type="text" name="teacher_name" value="<?php echo $info['teacher_name'];?>">
+                <br/><br/>
+                性别：<input type="text" name="teacher_sex" value="<?php echo $info['teacher_sex'];?>">
+                <br/><br/>
+                职称：<input type="text" name="teacher_zc" value="<?php echo $info['teacher_zc'];?>">
+                <br/><br/>
+                出生日期：<input type="text" name="teacher_csrq" value="<?php echo $info['teacher_csrq'];?>">
+                <br/><br/>
+                学历：<input type="text" name="teacher_xl" value="<?php echo $info['teacher_xl'];?>">
+                <br/><br/>
+                学院编号：<input type="text" name="college_id" value="<?php echo $info['college_id'];?>">
+                <br/><br/>
+               <input  type="submit" value="提交" />
+            </form>
+
+            </form>
+
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>修改</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form action="classroom.php?act=edit&id=<?php echo $info['classroom_id'];?>" method="post" >
+                教室编号：<input type="text" name="classroom_id" value="<?php echo $info['classroom_id'];?>">
+                <br/><br/>
+                教室名字：<input type="text" name="classroom_name" value="<?php echo $info['classroom_name'];?>">
+                <br/><br/>
+                教室类型：<input type="text" name="classroom_type" value="<?php echo $info['classroom_type'];?>">
+                <br/><br/>
+                楼号：<input type="text" name="classroom_lh" value="<?php echo $info['classroom_lh'];?>">
+                <br/><br/>
+                容纳人数：<input type="text" name="classroom_rs" value="<?php echo $info['classroom_rs'];?>">
+                <br/><br/>
+               <input  type="submit" value="提交" />
+
+            </form>
+
+        </div>
+    </body>
+</html>
+

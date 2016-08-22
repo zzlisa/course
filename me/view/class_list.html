@@ -1,0 +1,262 @@
+<?php
+    session_start();
+?>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>班级信息显示</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        div {
+            font-size: 13px;
+        }
+        
+        .right {
+            display: inline-block;
+            font-size: 14px;
+        }
+        
+        #menubg {
+            background: #408080;
+            height: 35px;
+            line-height: 35px;
+        }
+        
+        #menu {
+            margin: 0 auto;
+            width: 1000px;
+        }
+        
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        ul li {
+            list-style: none;
+            float: left;
+        }
+        
+        #menu ul li a {
+            display: block;
+            margin: 0 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        
+        #menu ul li a:hover {
+            /*background-color: orange;*/
+            color: #0eeff1;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .title {
+            font-weight: bold;
+            font-size: 12px;
+            color: #1f3f3f;
+            background-color: #d1d1d1;
+            height: 25px;
+            line-height: 25px;
+            padding-left: 5px;
+            border: 1px solid #E0E0E0;
+            margin-top: 5px;
+        }
+        
+        table {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        
+        td,
+        th {
+            height: 20px;
+            padding: 2px 2px 2px 5px;
+            font-size: 10pt;
+            word-break: break-all;
+            text-align: center;
+        }
+        
+        td {
+            border: 1px solid #E0E0E0;
+            empty-cells: show;
+        }
+        
+        th,
+        thead th {
+            border-bottom: 1px solid #000000;
+        }
+        
+        tfoot th {
+            border-top: 1px solid #000000;
+        }
+        
+        .schedule ul li {
+            float: left;
+            width: 180px;
+            margin-left: 20px;
+        }
+        
+        .schedule {
+            height: 80px;
+            border: 1px solid #E0E0E0;
+            line-height: 1.5;
+            margin: 0 auto;
+        }
+        
+        .page ul {
+            display: inline;
+        }
+        
+        .page ul li {
+            border: solid 1px orchid;
+            float: left;
+            list-style: none;
+            padding: 5px 10px;
+            margin: 10px 5px;
+        }
+        /*a {
+        text-decoration: none;
+    }*/
+        
+        span {
+            display: initial;
+            line-height: 3;
+        }
+        /*td {
+        border: solid 1px black;
+    }*/
+        /* span ul li {
+        float: left;
+    }*/
+        
+        .page {
+            /*float: right;*/
+            width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .iframe1 {
+            /*clear: both;*/
+            float: left;
+            /*position: absolute;*/
+        }
+        </style>
+    </head>
+
+    <body>
+        <div style="height:30px;line-height:30px;width:100%;background-color:#f7f7f7;border-bottom:1px solid #e4e4e4;">
+            <span style="margin-left:10px;color:#408080;">欢迎使用郑州师范学院课表查询系统</span>
+            <span style="float:right;margin-right:10px;">
+            <?php
+
+                if(!isset($_SESSION['username'])){
+                    echo "<script>alert('请先登录');location.href='lo.php';</script>";
+                } else {
+                    echo '在线人员：'.$_SESSION['username'];
+                }
+            ?>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="lo.php"><font color="#000">退出</font></a></span>
+            </span>
+        </div>
+        <div>
+            <img src="view/images/head.png">
+        </div>
+        <div id="menubg">
+            <div id="menu">
+                <ul>
+                    <li><a href="teacher.php">教师表</a></li>
+                    <li><a href="classroom.php">教室表</a></li>
+                    <li><a href="college.php">学院表</a></li>
+                    <li><a href="course.php">课程表</a></li>
+                    <li><a href="plan.php">教学计划表</a></li>
+                    <li><a href="profess.php">专业表</a></li>
+                    <li><a href="stu.php">学生表</a></li>
+                    <li>
+                        <a href="class.php">
+                            <font color="#0eeff1">班级表</font>
+                        </a>
+                    </li>
+                    <li><a href="index.php">返回首页</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <center>
+                <h1>班级表展示</h1>
+            </center>
+            <div class="container" style="border:1px solid #E0E0E0;">
+                <div class="title">班级表信息</div>
+                <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th>班级编号</th>
+                        <th>班级名称</th>
+                        <th>人数</th>
+                        <th>专业编号</th>
+                        <th>入学年份</th>
+                        <th>班级表操作</th>
+                    </tr>
+                    <?php foreach($list as $k=>$v):?>
+                    <tr>
+                        <td>
+                            <?php echo $v['class_id'];?>
+                        </td>
+                        <td>
+                            <?php echo $v['class_name'];?>
+                        </td>
+                        <td>
+                            <?php echo $v['class_rens'];?>
+                        </td>
+                        <td>
+                            <?php echo $v['profess_id'];?>
+                        </td>
+                        <td>
+                            <?php echo $v['class_year'];?>
+                        </td>
+                        <td>
+                            <a href="class.php?act=edit&id=<?php echo $v['class_id'];?>" target="iframe2">编辑</a>
+                            <a href="class.php?act=del&id=<?php echo $v['class_id'];?>">删除</a>
+                            <a href="view/add_class.html" target="iframe1">添加</a>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
+                </table>
+            </div>
+            <div class="page">
+                <span>一共<?php echo $pagecount;?>个班级</span>
+                <ul>
+                    <?php $i = 1;while($i<=$count){
+                        if($page==$i)
+                        {
+                        echo "<li style='background:orange;color:white;'><a style='color:#fff;' href = 'class.php?p={$i}'>$i</a></li>";
+                        }
+
+                        else{
+                        echo "<li><a href='class.php?p={$i}'>$i</a></li>";
+                        }
+                        $i++;
+                    }
+                ?>
+                </ul>
+            </div>
+            <iframe class="iframe" name="iframe1" frameborder="0" width="400px" height="400px"></iframe>
+            <iframe class="iframe1" name="iframe2" frameborder="0" width="400px" height="400px"></iframe>
+            <div align="center" class="container" style="font-size:10pt;border-bottom:2px solid #408080;height:30px;line-height:30px;margin-top:20px;margin-bottom:2px;">
+                郑州师范学院众创工作室版权所有 ©2012，浏览器版本：支持火狐、谷歌、IE（8.0及以上）
+    </body>
+
+    </html>

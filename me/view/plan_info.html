@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>添加</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form action="plan.php?act=edit&id=<?php echo $info['plan_id'];?>" method="post" >
+                教学计划编号：<input type="text" name="plan_id" value="<?php echo $info['plan_id'];?>">
+                <br/><br/>
+                专业编号：<input type="text" name="profess_id" value="<?php echo $info['profess_id'];?>">
+                <br/><br/>
+                计划学期：<input type="text" name="plan_xq" value="<?php echo $info['plan_xq'];?>">
+                <br/><br/>
+                课程编号：<input type="text" name="course_id" value="<?php echo $info['course_id'];?>">
+                <br/><br/>
+                计划周数：<input type="text" name="plan_week" value="<?php echo $info['plan_week'];?>">
+                <br/><br/>
+               <input  type="submit" value="提交" />
+            </form>
+
+        </div>
+    </body>
+</html>
